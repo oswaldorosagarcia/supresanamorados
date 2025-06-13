@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Dia dos Namorados ❤️</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #ffd6e0, #ffe4f0);
+      color: #333;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #c0392b;
+      animation: heartbeat 1.5s infinite;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+    .fotos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .fotos img {
+      width: 200px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .kiss {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 3s linear infinite;
+      opacity: 0.8;
+    }
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 2s infinite ease-in-out;
+    }
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .music-control:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: scale(1.1);
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0.8; }
+      100% { transform: translateY(-200px); opacity: 0; }
+    }
+    @keyframes sparkle {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-20px) scale(0.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="HIGH.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
+
+  <button class="music-control" id="musicButton">⏸️</button>
+
+  <h1>Feliz Dia dos Namorados, minha dordinha!</h1>
+  <p>
+    Hoje eu só queria te lembrar o quanto você é especial pra mim. Pensar em você me dá forças. Te amo mais do que consigo explicar. ❤️
+  </p>
+
+  <div class="fotos">
+    <img src="WhatsApp Image 2025-06-12 at 20.18.44.jpeg" alt="Foto 1">
+    <img src="WhatsApp Image 2025-06-12 at 20.17.16.jpeg" alt="Foto 2">
+    <img src="WhatsApp Image 2025-06-12 at 20.18.09.jpeg" alt="Foto 3">
+  </div>
+
+  <script>
+    // Criar brilhos
+    for (let i = 0; i < 50; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.top = Math.random() * 100 + 'vh';
+      sparkle.style.animationDuration = (1 + Math.random() * 2) + 's';
+      document.body.appendChild(sparkle);
+    }
+
+    // Criar beijos
+    setInterval(() => {
+      const kiss = document.createElement('div');
+      kiss.className = 'kiss';
+      kiss.textContent = '💋';
+      kiss.style.left = Math.random() * 100 + 'vw';
+      kiss.style.top = '100vh';
+      kiss.style.animationDuration = (2 + Math.random() * 2) + 's';
+      document.body.appendChild(kiss);
+      setTimeout(() => kiss.remove(), 4000);
+    }, 1000);
+
+    // Controle de música
+    const bgMusic = document.getElementById('bgMusic');
+    const musicButton = document.getElementById('musicButton');
+    
+    // Tenta tocar automaticamente
+    function startMusic() {
+      bgMusic.play()
+        .then(() => {
+          musicButton.textContent = '⏸️';
+        })
+        .catch(error => {
+          console.log('Autoplay bloqueado:', error);
+          musicButton.textContent = '▶️';
+          // Mostra alerta se o autoplay for bloqueado
+          alert('Por favor, clique no botão de play para iniciar a música.');
+        });
+    }
+    
+    // Inicia a música quando a página carrega
+    window.addEventListener('load', startMusic);
+    
+    // Também tenta iniciar quando o usuário interage com a página
+    document.addEventListener('click', startMusic, { once: true });
+
+    // Controle do botão de música
+    musicButton.addEventListener('click', function() {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicButton.textContent = '⏸️';
+      } else {
+        bgMusic.pause();
+        musicButton.textContent = '▶️';
+      }
+    });
+  </script>
+
+</body>
+</html>
